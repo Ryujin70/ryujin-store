@@ -3,117 +3,350 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Ryujin Store</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
 
 body{
-background:#020617;color:#fff;overflow-x:hidden;
+background:#020617;
+color:white;
+overflow-x:hidden;
 animation:fadeIn 1.2s ease;
 }
+
+/* ===== PAGE FADE ===== */
+
 @keyframes fadeIn{
-from{opacity:0;transform:scale(1.05);}
-to{opacity:1;transform:scale(1);}
+from{
+opacity:0;
+transform:scale(1.03);
 }
+to{
+opacity:1;
+transform:scale(1);
+}
+}
+
+/* ===== BACKGROUND GLOW ===== */
 
 body::before{
 content:"";
 position:fixed;
-width:200%;height:200%;
-background:radial-gradient(circle at 30% 30%, #0ea5e9 0%, transparent 40%),
-           radial-gradient(circle at 70% 70%, #22c55e 0%, transparent 40%);
+width:200%;
+height:200%;
+
+background:
+radial-gradient(circle at 30% 30%, #0ea5e9 0%, transparent 40%),
+radial-gradient(circle at 70% 70%, #22c55e 0%, transparent 40%);
+
 animation:moveBg 15s linear infinite;
+
 z-index:-3;
 opacity:0.15;
 }
+
 @keyframes moveBg{
-0%{transform:translate(0,0);}
-50%{transform:translate(-10%,-10%);}
-100%{transform:translate(0,0);}
+
+0%{
+transform:translate(0,0);
 }
 
-canvas#bgStars{position:fixed;width:100%;height:100%;z-index:-2;}
+50%{
+transform:translate(-10%,-10%);
+}
 
-h2,h3{animation:glow 3s infinite;}
+100%{
+transform:translate(0,0);
+}
+
+}
+
+/* ===== STARS ===== */
+
+canvas#bgStars{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-2;
+}
+
+/* ===== GLOW TEXT ===== */
+
+h2,h3{
+animation:glow 3s infinite;
+}
+
 @keyframes glow{
-0%{text-shadow:0 0 10px #38bdf8;}
-50%{text-shadow:0 0 25px #22c55e,0 0 40px #38bdf8;}
-100%{text-shadow:0 0 10px #38bdf8;}
+
+0%{
+text-shadow:0 0 10px #38bdf8;
 }
+
+50%{
+text-shadow:0 0 25px #22c55e,0 0 40px #38bdf8;
+}
+
+100%{
+text-shadow:0 0 10px #38bdf8;
+}
+
+}
+
+/* ===== HEADER ===== */
 
 header{
-position:fixed;width:100%;padding:15px 8%;
-display:flex;justify-content:space-between;
-background:rgba(2,6,23,0.85);backdrop-filter:blur(10px);
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:16px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+background:rgba(2,6,23,0.82);
+backdrop-filter:blur(10px);
+
 z-index:1000;
 }
 
-.btn{
-padding:12px 22px;
-background:linear-gradient(45deg,#38bdf8,#22c55e);
-color:#000;border-radius:10px;
-text-decoration:none;font-weight:600;
-transition:0.3s;
-cursor:pointer;
+header h1{
+font-size:26px;
+font-weight:700;
 }
-.btn:hover{transform:scale(1.08);box-shadow:0 0 25px #22c55e;}
+
+/* ===== BUTTON ===== */
+
+.btn{
+padding:13px 24px;
+background:linear-gradient(45deg,#38bdf8,#22c55e);
+color:black;
+border-radius:12px;
+text-decoration:none;
+font-weight:700;
+transition:.35s;
+cursor:pointer;
+display:inline-block;
+}
+
+.btn:hover{
+transform:scale(1.08);
+box-shadow:0 0 25px #22c55e;
+}
+
+/* ===== HERO ===== */
 
 .hero{
-height:100vh;display:flex;flex-direction:column;
-justify-content:center;align-items:center;text-align:center;
-padding:0 10%;
+min-height:100vh;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+
+text-align:center;
+
+padding:
+140px
+10%
+80px;
 }
 
-.hero h2{font-size:clamp(32px,6vw,56px);}
-.hero p{margin:20px 0;color:#aaa;}
+.hero h2{
 
-.section{padding:100px 10%;}
-.section h2{text-align:center;margin-bottom:40px;}
+font-size:clamp(38px,6vw,68px);
+
+line-height:1.2;
+
+max-width:1000px;
+
+margin-bottom:22px;
+
+font-weight:800;
+}
+
+.hero h3{
+
+font-size:clamp(22px,4vw,36px);
+
+margin-bottom:24px;
+
+color:#38bdf8;
+
+line-height:1.4;
+
+max-width:900px;
+}
+
+.hero p{
+
+max-width:950px;
+
+margin:14px auto;
+
+line-height:1.9;
+
+font-size:16px;
+
+color:#cbd5e1;
+}
+
+.hero .highlight{
+color:#22c55e;
+font-weight:700;
+margin-top:22px;
+font-size:18px;
+}
+
+/* ===== SECTION ===== */
+
+.section{
+padding:100px 10%;
+}
+
+.section h2{
+text-align:center;
+margin-bottom:50px;
+font-size:40px;
+}
+
+/* ===== GRID ===== */
 
 .cards{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
+
+grid-template-columns:
+repeat(auto-fit,minmax(260px,1fr));
+
+gap:28px;
 }
+
+/* ===== CARD ===== */
 
 .card{
-background:rgba(30,41,59,0.6);
-padding:25px;border-radius:16px;
-opacity:0;transform:translateY(40px);
-transition:0.4s;
+
+background:
+rgba(30,41,59,0.6);
+
+padding:28px;
+
+border-radius:18px;
+
+opacity:0;
+transform:translateY(40px);
+
+transition:.4s;
+
 text-align:center;
+
+border:
+1px solid rgba(255,255,255,0.05);
 }
-.card.show{opacity:1;transform:translateY(0);}
-.card:hover{transform:scale(1.05);box-shadow:0 0 30px #22c55e;}
+
+.card.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.card:hover{
+transform:translateY(-8px) scale(1.03);
+box-shadow:0 0 35px rgba(34,197,94,.35);
+}
+
+.card h3{
+margin-bottom:15px;
+}
+
+.card p{
+line-height:1.7;
+color:#d1d5db;
+}
+
+/* ===== LOGO ===== */
 
 .card img.logo{
-width:70px;margin-bottom:10px;
-background:#fff;padding:10px;border-radius:12px;
+width:72px;
+margin-bottom:15px;
+background:white;
+padding:10px;
+border-radius:14px;
 }
 
-.review{color:#ccc;font-size:14px;margin-top:10px;}
+/* ===== REVIEWS ===== */
 
-footer{text-align:center;padding:40px;color:#777;}
+.review{
+color:#d1d5db;
+font-size:15px;
+line-height:1.8;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+text-align:center;
+padding:45px;
+color:#94a3b8;
+}
+
+/* ===== FLOATING WHATSAPP ===== */
 
 .whatsapp{
-position:fixed;bottom:20px;right:20px;
-background:#25D366;padding:16px;border-radius:50%;
+position:fixed;
+
+bottom:20px;
+right:20px;
+
+background:#25D366;
+
+padding:16px;
+
+border-radius:50%;
+
+font-size:24px;
+
+z-index:999;
 }
 
-#portal{position:fixed;top:0;left:0;width:100%;height:100%;background:black;opacity:0;pointer-events:none;z-index:9999;}
-#portal canvas{width:100%;height:100%;}
-#flash{position:fixed;inset:0;background:white;opacity:0;pointer-events:none;z-index:10000;}
+/* ===== SHAKE ===== */
 
 @keyframes shake{
-0%{transform:translate(0);}
-25%{transform:translate(5px,-5px);}
-50%{transform:translate(-5px,5px);}
-75%{transform:translate(5px,5px);}
-100%{transform:translate(0);}
+
+0%{
+transform:translate(0);
 }
+
+25%{
+transform:translate(5px,-5px);
+}
+
+50%{
+transform:translate(-5px,5px);
+}
+
+75%{
+transform:translate(5px,5px);
+}
+
+100%{
+transform:translate(0);
+}
+
+}
+
 </style>
 </head>
 
@@ -122,134 +355,593 @@ background:#25D366;padding:16px;border-radius:50%;
 <canvas id="bgStars"></canvas>
 
 <header>
+
 <h1>Ryujin Store</h1>
-<a href="#services" class="btn">Explore</a>
+
+<a href="#services" class="btn">
+Explore
+</a>
+
 </header>
 
-<section class="hero">
-<h2>🚀 Dominate Every Game. Become Unstoppable Online.</h2>
-<p>High-Tier Gaming Accounts • Instant UC & Diamond Top-Ups • Real Social Media Growth That Converts</p>
+<!-- ===== HERO ===== -->
 
-<p style="color:#22c55e;font-weight:600;">
-💳 We accept payments in ₹ Indian Rupees & $ USD • Fast • Secure • Trusted
+<section class="hero">
+
+<h3>
+🚀 Dominate Every Game.<br>
+Become Unstoppable Online.
+</h3>
+
+<h3>
+💃🏻 Dominate Social Growth.<br>
+Become Known Online.
+</h3>
+
+<p>
+High-Tier Gaming Accounts • Instant UC & Diamond Top-Ups • Real Social Media Growth That Converts
 </p>
 
-<div style="margin-top:20px;display:flex;gap:15px;flex-wrap:wrap;justify-content:center;">
-<a href="https://chat.whatsapp.com/ECtBBZvuhymLhBpB5BJ0HA" class="btn" onclick="enterStore(this.href); return false;">🎮 Elina Store (Game Services)</a>
-<a href="https://chat.whatsapp.com/KSd9HREOqBW1RtLgYLD0ls" class="btn" onclick="enterStore(this.href); return false;">📈 Ryujin Store (Social Media Services)</a>
+<p>
+Meta has strengthened its spam-detection systems. Automated actions can now trigger restrictions or account blocks instantly.
+</p>
+
+<p>
+That’s why our services focus on slow, organic, and manual boosting methods using multi-device activity for safer and more realistic engagement.
+</p>
+
+<p>
+Unlike low-quality spam boosters that get banned, we prioritize account safety, reliability, and long-term growth.
+</p>
+
+<p>
+We also provide proper invoices and complete transaction details for every service.
+</p>
+
+<p class="highlight">
+💳 We accept ₹ INR & $ USD • Fast • Secure • Trusted
+</p>
+
+<div style="margin-top:30px;display:flex;justify-content:center;gap:15px;flex-wrap:wrap;">
+
+<a
+href="https://chat.whatsapp.com/DaDG8FTIBSY6V6RjP8WK10"
+class="btn"
+onclick="enterStore(this.href); return false;"
+>
+🎮 Join Ryujin Store Community
+</a>
+
 </div>
+
 </section>
+
+<!-- ===== SERVICES ===== -->
 
 <section id="services" class="section">
+
 <h2>🎮 Elite Gaming Marketplace</h2>
+
 <div class="cards">
-<div class="card"><h3>🔥 BGMI / PUBG Accounts</h3><p>Step into elite lobbies with rare skins, conquer ranks instantly, and play like a pro from day one.</p></div>
-<div class="card"><h3>⚔️ Mobile Legends Accounts</h3><p>Unlock premium heroes, exclusive skins, and dominate ranked matches without the grind.</p></div>
-<div class="card"><h3>💎 UC / Diamond Top-Up</h3><p>⚡ Instant delivery • 💰 Best market rates • 🔒 100% safe transactions you can trust.</p></div>
-<div class="card"><h3>💳 EMI Available</h3><p>Get premium accounts now and pay later with smooth, flexible EMI options.</p></div>
+
+<div class="card">
+<h3>🔥 BGMI / PUBG Accounts</h3>
+<p>
+Rare skins, conqueror-ready accounts, premium inventories, and elite gameplay setups.
+</p>
 </div>
+
+<div class="card">
+<h3>⚔️ Mobile Legends Accounts</h3>
+<p>
+Premium heroes, rare skins, and ranked-ready accounts without the endless grind.
+</p>
+</div>
+
+<div class="card">
+<h3>💎 UC / Diamond Top-Up</h3>
+<p>
+⚡ Instant delivery • 💰 Best pricing • 🔒 Secure transactions.
+</p>
+</div>
+
+<div class="card">
+<h3>💳 EMI Available</h3>
+<p>
+Flexible EMI options available for premium purchases and expensive accounts.
+</p>
+</div>
+
+</div>
+
 </section>
 
+<!-- ===== SOCIAL MEDIA ===== -->
+
 <section class="section">
+
 <h2>📈 Explode Your Social Media Growth</h2>
+
 <div class="cards">
-<div class="card"><img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"><h3>Instagram Growth</h3><p>Gain real followers, boost engagement, and build a powerful online presence that stands out.</p></div>
-<div class="card"><img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"><h3>Facebook Boost</h3><p>Reach thousands instantly, increase visibility, and grow your audience faster than ever.</p></div>
-<div class="card"><img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"><h3>YouTube Promotion</h3><p>Skyrocket views, gain subscribers, and turn your channel into a fast-growing brand.</p></div>
+
+<div class="card">
+<img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
+
+<h3>Instagram Growth</h3>
+
+<p>
+Gain engagement, build authority, and grow your online influence organically.
+</p>
+
 </div>
+
+<div class="card">
+
+<img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png">
+
+<h3>Facebook Boost</h3>
+
+<p>
+Expand your reach, visibility, and online presence with scalable campaigns.
+</p>
+
+</div>
+
+<div class="card">
+
+<img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg">
+
+<h3>YouTube Promotion</h3>
+
+<p>
+Boost views, subscribers, and growth momentum for creators and channels.
+</p>
+
+</div>
+
+</div>
+
 </section>
 
+<!-- ===== PROOFS ===== -->
+
 <section class="section">
+
 <h2>📊 Proof of Our Services</h2>
+
 <div class="cards">
+
 <div class="card show">
-<h3>🎮 Game Accounts Sold / Stock</h3>
-<p style="margin:15px 0;color:#ddd;">Real transactions. Real buyers. Proven track record of successful deals.</p>
-<a href="https://kommodo.ai/i/NImgOxuJ5Uiughbj8R7L" class="btn" target="_blank">View Proof</a>
+
+<h3>🎮 Gaming Proofs</h3>
+
+<p style="margin:15px 0;">
+Verified deals, successful transactions, and trusted customers.
+</p>
+
+<a
+href="https://kommodo.ai/i/NImgOxuJ5Uiughbj8R7L"
+class="btn"
+target="_blank"
+>
+View Proof
+</a>
+
 </div>
+
 <div class="card show">
-<h3>📈 Social Media Service Proof</h3>
-<p style="margin:15px 0;color:#ddd;">Authentic growth results delivered to satisfied customers consistently.</p>
-<a href="https://kommodo.ai/i/YUDOz6xwITyA8OB6EwNI" class="btn" target="_blank">View Proof</a>
+
+<h3>📈 Social Media Proofs</h3>
+
+<p style="margin:15px 0;">
+Real growth screenshots and authentic delivery results.
+</p>
+
+<a
+href="https://kommodo.ai/i/YUDOz6xwITyA8OB6EwNI"
+class="btn"
+target="_blank"
+>
+View Proof
+</a>
+
 </div>
+
 </div>
+
 </section>
 
+<!-- ===== REVIEWS ===== -->
+
 <section class="section">
+
 <h2>⭐ Customer Reviews</h2>
+
 <div class="cards">
-<div class="card show"><p class="review">“Received my account within minutes. Smooth and legit service.”</p></div>
-<div class="card show"><p class="review">“Top-up was instant and cheaper than anywhere else.”</p></div>
-<div class="card show"><p class="review">“Grew my Instagram fast. Definitely trusted seller.”</p></div>
+
+<div class="card show">
+<p class="review">
+“Received my account within minutes. Smooth and trusted service.”
+</p>
 </div>
+
+<div class="card show">
+<p class="review">
+“Top-up arrived instantly and cheaper than other sellers.”
+</p>
+</div>
+
+<div class="card show">
+<p class="review">
+“Instagram growth was fast and clean. Highly recommended.”
+</p>
+</div>
+
+</div>
+
 </section>
 
+<!-- ===== FAQ ===== -->
+
 <section class="section">
+
 <h2>❓ FAQs</h2>
+
 <div class="cards">
-<div class="card show"><h3>🔒 Is it safe?</h3><p>Yes. All services are tested, verified, and trusted by real customers.</p></div>
-<div class="card show"><h3>⚡ How fast is delivery?</h3><p>Most orders are completed instantly or within a few minutes.</p></div>
-<div class="card show"><h3>💰 Do you offer refunds?</h3><p>Yes, valid issues are handled quickly with fair solutions.</p></div>
-<div class="card show"><h3>💳 EMI available?</h3><p>Yes, flexible EMI options are available for premium purchases.</p></div>
-<div class="card show"><h3>📲 How do I order?</h3><p>Join our WhatsApp store, choose your service, and message us directly.</p></div>
-<div class="card show"><h3>🔥 Why choose us?</h3><p>Fast delivery, best prices, real results, and trusted by growing customers.</p></div>
+
+<div class="card show">
+<h3>🔒 Is it safe?</h3>
+<p>
+Yes. Services are tested, verified, and handled carefully.
+</p>
 </div>
+
+<div class="card show">
+<h3>⚡ Delivery Speed?</h3>
+<p>
+Most orders are completed instantly or within minutes.
+</p>
+</div>
+
+<div class="card show">
+<h3>💰 Refund Policy?</h3>
+<p>
+Valid issues are handled fairly and quickly.
+</p>
+</div>
+
+<div class="card show">
+<h3>💳 EMI Available?</h3>
+<p>
+Yes, EMI support is available for selected purchases.
+</p>
+</div>
+
+<div class="card show">
+<h3>📲 How to Order?</h3>
+<p>
+Join the WhatsApp community and contact directly.
+</p>
+</div>
+
+<div class="card show">
+<h3>🔥 Why Choose Us?</h3>
+<p>
+Fast delivery, real results, trusted support, and competitive pricing.
+</p>
+</div>
+
+</div>
+
 </section>
+
+<!-- ===== FOOTER ===== -->
 
 <footer>
-<p>© 2026 Ryujin Store</p>
+© 2026 Ryujin Store
 </footer>
 
-<a href="https://chat.whatsapp.com/KSd9HREOqBW1RtLgYLD0ls" class="whatsapp" onclick="enterStore(this.href); return false;">💬</a>
+<!-- ===== FLOATING BUTTON ===== -->
+
+<a
+href="https://chat.whatsapp.com/DaDG8FTIBSY6V6RjP8WK10"
+class="whatsapp"
+onclick="enterStore(this.href); return false;"
+>
+💬
+</a>
+
+<!-- ===== AUDIO ===== -->
 
 <audio id="click" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio>
+
 <audio id="whoosh" src="https://assets.mixkit.co/active_storage/sfx/2533/2533-preview.mp3"></audio>
 
-<div id="portal"><canvas id="portalCanvas"></canvas></div>
-<div id="flash"></div>
+<!-- ===== JS ===== -->
 
 <script>
-// scroll animation
-document.querySelectorAll('.card').forEach(c=>{
+
+/* ===== CARD SCROLL ===== */
+
+document.querySelectorAll('.card').forEach(card=>{
+
 window.addEventListener('scroll',()=>{
-if(c.getBoundingClientRect().top<window.innerHeight-100){
-c.classList.add('show');
+
+if(card.getBoundingClientRect().top < window.innerHeight - 100){
+
+card.classList.add('show');
+
 }
-});
+
 });
 
-// stars animation
-const canvas=document.getElementById('bgStars');
-const ctx=canvas.getContext('2d');
-canvas.width=innerWidth;
-canvas.height=innerHeight;
+});
 
-let stars=[];
+/* ===== BACKGROUND STARS ===== */
+
+const bgCanvas = document.getElementById('bgStars');
+
+const bgCtx = bgCanvas.getContext('2d');
+
+bgCanvas.width = innerWidth;
+bgCanvas.height = innerHeight;
+
+let bgStars = [];
+
 for(let i=0;i<200;i++){
-stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,size:Math.random()*2,speed:Math.random()*0.6});
-}
 
-function draw(){
-ctx.fillStyle="#020617";
-ctx.fillRect(0,0,canvas.width,canvas.height);
-
-stars.forEach(s=>{
-ctx.beginPath();
-ctx.arc(s.x,s.y,s.size,0,Math.PI*2);
-ctx.fillStyle="rgba(56,189,248,0.8)";
-ctx.fill();
-s.y+=s.speed;
-if(s.y>canvas.height)s.y=0;
+bgStars.push({
+x:Math.random()*bgCanvas.width,
+y:Math.random()*bgCanvas.height,
+size:Math.random()*2,
+speed:Math.random()*0.6
 });
 
-requestAnimationFrame(draw);
 }
-draw();
 
-// warp animation
-function enterStore(url){
-window.location.href=url;
+function drawStars(){
+
+bgCtx.fillStyle = "#020617";
+
+bgCtx.fillRect(0,0,bgCanvas.width,bgCanvas.height);
+
+bgStars.forEach(s=>{
+
+bgCtx.beginPath();
+
+bgCtx.arc(s.x,s.y,s.size,0,Math.PI*2);
+
+bgCtx.fillStyle = "rgba(56,189,248,0.85)";
+
+bgCtx.fill();
+
+s.y += s.speed;
+
+if(s.y > bgCanvas.height){
+
+s.y = 0;
+
 }
+
+});
+
+requestAnimationFrame(drawStars);
+
+}
+
+drawStars();
+
+/* ===== ENTER STORE ===== */
+
+function enterStore(url){
+
+document.getElementById('click').play();
+
+const overlay = document.createElement('div');
+
+overlay.innerHTML = `
+
+<div id="spaceWarpOverlay">
+
+<canvas id="warpStars"></canvas>
+
+<div id="warpUI">
+
+<h1>
+Welcome To<br>
+Ryujin Store
+</h1>
+
+<div id="warpSub">
+Initializing Space Route...
+</div>
+
+</div>
+
+<div id="cockpitOverlay"></div>
+
+</div>
+
+`;
+
+document.body.appendChild(overlay);
+
+const style = document.createElement("style");
+
+style.innerHTML = `
+
+#spaceWarpOverlay{
+position:fixed;
+inset:0;
+z-index:999999;
+overflow:hidden;
+
+background:url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Milky_Way_Galaxy.jpg');
+
+background-size:cover;
+background-position:center;
+
+animation:spaceMove 25s ease-in-out infinite;
+
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+@keyframes spaceMove{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.12) translate(-2%,-2%);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+#warpStars{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.35);
+}
+
+#cockpitOverlay{
+position:absolute;
+inset:0;
+
+background:url('https://i.ibb.co/8jZQ3xK/cockpit-overlay.png');
+
+background-size:cover;
+background-position:center;
+
+opacity:.45;
+
+pointer-events:none;
+}
+
+#warpUI{
+position:relative;
+z-index:5;
+text-align:center;
+color:white;
+animation:fadeIn 2s ease;
+padding:20px;
+}
+
+#warpUI h1{
+
+font-size:clamp(42px,7vw,82px);
+
+text-shadow:0 0 25px #38bdf8;
+
+letter-spacing:4px;
+
+margin-bottom:18px;
+
+line-height:1.2;
+}
+
+#warpSub{
+
+font-size:18px;
+
+opacity:.85;
+
+letter-spacing:2px;
+
+}
+
+`;
+
+document.head.appendChild(style);
+
+/* ===== WARP STARS ===== */
+
+const warpCanvas = document.getElementById("warpStars");
+
+const warpCtx = warpCanvas.getContext("2d");
+
+warpCanvas.width = innerWidth;
+warpCanvas.height = innerHeight;
+
+let warpStars = [];
+
+for(let i=0;i<180;i++){
+
+warpStars.push({
+x:Math.random()*warpCanvas.width,
+y:Math.random()*warpCanvas.height,
+size:Math.random()*1.5,
+speed:Math.random()*0.7
+});
+
+}
+
+function animateWarp(){
+
+warpCtx.fillStyle = "rgba(0,0,0,0.22)";
+
+warpCtx.fillRect(0,0,warpCanvas.width,warpCanvas.height);
+
+warpStars.forEach(s=>{
+
+warpCtx.beginPath();
+
+warpCtx.arc(s.x,s.y,s.size,0,Math.PI*2);
+
+warpCtx.fillStyle = "white";
+
+warpCtx.fill();
+
+s.y += s.speed;
+
+if(s.y > warpCanvas.height){
+
+s.y = 0;
+
+s.x = Math.random()*warpCanvas.width;
+
+}
+
+});
+
+requestAnimationFrame(animateWarp);
+
+}
+
+animateWarp();
+
+/* ===== TRANSITION ===== */
+
+document.body.style.animation = "shake .5s";
+
+setTimeout(()=>{
+
+document.getElementById('whoosh').play();
+
+window.open(url,'_blank');
+
+document.getElementById('spaceWarpOverlay').style.transition = "1.5s";
+
+document.getElementById('spaceWarpOverlay').style.opacity = "0";
+
+setTimeout(()=>{
+
+document.getElementById('spaceWarpOverlay').remove();
+
+},1500);
+
+},2500);
+
+}
+
 </script>
 
 </body>
