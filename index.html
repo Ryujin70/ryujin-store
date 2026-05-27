@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Elina Ryujin Store</title>
+<title>Ryujin Store</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -19,7 +19,6 @@ from{opacity:0;transform:scale(1.05);}
 to{opacity:1;transform:scale(1);}
 }
 
-/* PREMIUM BG */
 body::before{
 content:"";
 position:fixed;
@@ -38,9 +37,7 @@ opacity:0.15;
 
 canvas#bgStars{position:fixed;width:100%;height:100%;z-index:-2;}
 
-h2,h3{
-animation:glow 3s infinite;
-}
+h2,h3{animation:glow 3s infinite;}
 @keyframes glow{
 0%{text-shadow:0 0 10px #38bdf8;}
 50%{text-shadow:0 0 25px #22c55e,0 0 40px #38bdf8;}
@@ -69,6 +66,7 @@ height:100vh;display:flex;flex-direction:column;
 justify-content:center;align-items:center;text-align:center;
 padding:0 10%;
 }
+
 .hero h2{font-size:clamp(32px,6vw,56px);}
 .hero p{margin:20px 0;color:#aaa;}
 
@@ -105,7 +103,6 @@ position:fixed;bottom:20px;right:20px;
 background:#25D366;padding:16px;border-radius:50%;
 }
 
-/* portal + flash */
 #portal{position:fixed;top:0;left:0;width:100%;height:100%;background:black;opacity:0;pointer-events:none;z-index:9999;}
 #portal canvas{width:100%;height:100%;}
 #flash{position:fixed;inset:0;background:white;opacity:0;pointer-events:none;z-index:10000;}
@@ -125,7 +122,7 @@ background:#25D366;padding:16px;border-radius:50%;
 <canvas id="bgStars"></canvas>
 
 <header>
-<h1>elina.ryujin_store</h1>
+<h1>Ryujin Store</h1>
 <a href="#services" class="btn">Explore</a>
 </header>
 
@@ -140,7 +137,6 @@ background:#25D366;padding:16px;border-radius:50%;
 <div style="margin-top:20px;display:flex;gap:15px;flex-wrap:wrap;justify-content:center;">
 <a href="https://chat.whatsapp.com/ECtBBZvuhymLhBpB5BJ0HA" class="btn" onclick="enterStore(this.href); return false;">🎮 Elina Store (Game Services)</a>
 <a href="https://chat.whatsapp.com/KSd9HREOqBW1RtLgYLD0ls" class="btn" onclick="enterStore(this.href); return false;">📈 Ryujin Store (Social Media Services)</a>
-<a href="https://www.instagram.com/elina.ryujin_store" class="btn" onclick="enterStore(this.href); return false;">📸 Our Store Instagram</a>
 </div>
 </section>
 
@@ -201,7 +197,7 @@ background:#25D366;padding:16px;border-radius:50%;
 </section>
 
 <footer>
-<p>© 2026 elina.ryujin_store</p>
+<p>© 2026 Ryujin Store</p>
 </footer>
 
 <a href="https://chat.whatsapp.com/KSd9HREOqBW1RtLgYLD0ls" class="whatsapp" onclick="enterStore(this.href); return false;">💬</a>
@@ -222,7 +218,7 @@ c.classList.add('show');
 });
 });
 
-// background stars + sparkles
+// stars animation
 const canvas=document.getElementById('bgStars');
 const ctx=canvas.getContext('2d');
 canvas.width=innerWidth;
@@ -231,11 +227,6 @@ canvas.height=innerHeight;
 let stars=[];
 for(let i=0;i<200;i++){
 stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,size:Math.random()*2,speed:Math.random()*0.6});
-}
-
-let sparkles=[];
-for(let i=0;i<50;i++){
-sparkles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,life:100});
 }
 
 function draw(){
@@ -251,87 +242,13 @@ s.y+=s.speed;
 if(s.y>canvas.height)s.y=0;
 });
 
-sparkles.forEach(sp=>{
-ctx.fillStyle="rgba(255,255,255,0.7)";
-ctx.fillRect(sp.x,sp.y,1,1);
-sp.life--;
-if(sp.life<=0){
-sp.x=Math.random()*canvas.width;
-sp.y=Math.random()*canvas.height;
-sp.life=100;
-}
-});
-
 requestAnimationFrame(draw);
 }
 draw();
 
 // warp animation
 function enterStore(url){
-const portal=document.getElementById('portal');
-const flash=document.getElementById('flash');
-const pc=document.getElementById('portalCanvas');
-const pctx=pc.getContext('2d');
-
-pc.width=innerWidth;
-pc.height=innerHeight;
-
-portal.style.opacity=1;
-portal.style.pointerEvents='all';
-document.body.style.animation="shake 0.3s";
-
-let stars=[];
-for(let i=0;i<500;i++){
-stars.push({x:(Math.random()-0.5)*pc.width,y:(Math.random()-0.5)*pc.height,z:Math.random()*pc.width});
-}
-
-let speed=6;
-
-function warp(){
-pctx.fillStyle='rgba(0,0,0,0.25)';
-pctx.fillRect(0,0,pc.width,pc.height);
-
-stars.forEach(s=>{
-let prevZ=s.z;
-s.z-=speed;
-if(s.z<=0){s.z=pc.width;prevZ=s.z;}
-
-let k=140/s.z;
-let x=s.x*k+pc.width/2;
-let y=s.y*k+pc.height/2;
-
-let kPrev=140/prevZ;
-let px=s.x*kPrev+pc.width/2;
-let py=s.y*kPrev+pc.height/2;
-
-const grad=pctx.createLinearGradient(px,py,x,y);
-grad.addColorStop(0,'#22c55e');
-grad.addColorStop(1,'#38bdf8');
-
-pctx.strokeStyle=grad;
-pctx.lineWidth=2;
-pctx.beginPath();
-pctx.moveTo(px,py);
-pctx.lineTo(x,y);
-pctx.stroke();
-});
-
-speed+=1.2;
-if(speed<65) requestAnimationFrame(warp);
-}
-
-document.getElementById('click').play();
-warp();
-
-setTimeout(()=>{
-flash.style.opacity=1;
-setTimeout(()=>flash.style.opacity=0,100);
-},1500);
-
-setTimeout(()=>{
-document.getElementById('whoosh').play();
-window.location.href = url || "https://chat.whatsapp.com/";
-},2000);
+window.location.href=url;
 }
 </script>
 
